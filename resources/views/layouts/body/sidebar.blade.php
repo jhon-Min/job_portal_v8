@@ -7,19 +7,27 @@
             <a href="{{ route('home') }}">CP</a>
         </div>
 
-        {{-- <ul class="sidebar-menu">
+        <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li
-                class="dropdown {{ request()->url() == route('home') ? 'active' : '' }} {{ Request::is('admin-control') ? 'active' : '' }}">
+            <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('home') }}">Home</x-menu-item>
-                    <x-menu-item link="{{ route('admin.index') }}">Admin Control</x-menu-item>
-                    <x-menu-item link="{{ route('message.index') }}">Chat</x-menu-item>
                 </ul>
             </li>
 
-            <li
+            <li class="dropdown {{ Request::is('auto-sysem') ? 'active' : '' }} ">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-random"></i>
+                    <span>Category Managment</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('category.index') }}">Lists</x-menu-item>
+                    <x-menu-item link="{{ route('category.create') }}">Create</x-menu-item>
+                </ul>
+            </li>
+
+            {{-- <li
                 class="dropdown {{ Request::is('enduser') ? 'active' : '' }}  {{ Request::is('enduser/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa fa-user"></i>
@@ -92,7 +100,7 @@
                 <form class="d-none" id="logOut" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>
-            </div>
-        </ul> --}}
+            </div> --}}
+        </ul>
     </aside>
 </div>
