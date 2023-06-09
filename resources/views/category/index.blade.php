@@ -30,6 +30,14 @@
                                     <td>
                                         <a class="btn btn-secondary btn-sm"
                                             href="{{ route('category.edit', $list->id) }}">Edit</a>
+
+                                        <form class="d-inline ml-2" action="{{ route('category.destroy', $list->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
                                     </td>
                                     <td>{{ $list->created_at }}</td>
                                 </tr>
