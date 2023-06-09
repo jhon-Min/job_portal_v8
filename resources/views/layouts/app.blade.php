@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Datatable CDN -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.css') }}">
@@ -62,9 +61,12 @@
 
     <!-- General JS Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script src="{{ asset('dashboard/assets/bundles/lib.vendor.bundle.js') }}"></script>
     <script src="{{ asset('dashboard/js/CodiePie.js') }}"></script>
+
+    <!-- Datatable for laravel -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- JS Libraies -->
     <script src="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.js') }}"></script>

@@ -21,4 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('category/data_table', [CategoryController::class, 'ssdataTable'])->name('category.ssdt');
 Route::resource('category', CategoryController::class)->except('show');
