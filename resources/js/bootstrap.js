@@ -1,4 +1,5 @@
 window._ = require("lodash");
+import Swal from "sweetalert2/dist/sweetalert2";
 
 try {
     require("bootstrap");

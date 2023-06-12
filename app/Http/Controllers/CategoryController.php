@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use Carbon\Carbon;
 use App\Models\Category;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -21,12 +22,20 @@ class CategoryController extends Controller
 
     public function ssdataTable()
     {
-        $lists = Category::orderBy('id', 'desc')->get();
+        $lists = Category::withTrashed()->get();
         return DataTables::of($lists)
             ->addColumn('action', function ($value) {
                 $edit = '<a href="' . route('category.edit', $value->id) . '" class="btn btn-secondary btn-sm">Edit</a>';
-                return $edit;
+                $del = '<a href="#" class="btn btn-danger text-white btn-sm del-btn ms-2" data-id="' . $value->id . '">Delete</a>';
+
+                if ($value->deleted_at) {
+                    $del = '<a href="#" class="btn btn-success text-white btn-sm restore-btn ms-2" data-id="' . $value->id . '">Restore</a>';
+                } else {
+                    $del = '<a href="#" class="btn btn-danger text-white btn-sm del-btn ms-2" data-id="' . $value->id . '">Delete</a>';
+                }
+                return '<span>' . $edit . $del . '</span>';
             })
+            ->editColumn('created', fn ($value) => Carbon::parse($value->created_at)->format('d M Y'))
             ->make(true);
     }
 
@@ -90,8 +99,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        dd($category);
-        $category->delete();
-        return redirect()->route('category.index');
+        return $category->delete();
     }
 }
