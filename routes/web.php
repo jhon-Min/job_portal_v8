@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Category
 Route::get('category/data_table', [CategoryController::class, 'ssdataTable'])->name('category.ssdt');
 Route::resource('category', CategoryController::class)->except('show');
+
+// Job
+Route::get('job/data_query', [PostController::class, 'queryTable'])->name('job.queryTable');
+Route::resource('job', PostController::class);
