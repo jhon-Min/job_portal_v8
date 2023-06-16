@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Services\PostService;
 use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
@@ -53,19 +54,9 @@ class PostController extends Controller
      * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request, PostService $postService)
     {
-        Post::create([
-            'name' => $request->name,
-            'salary' => $request->salary,
-            'category_id' => $request->category_id,
-            'requirements' => $request->requirements,
-            'job_desc' => $request->job_desc,
-            'info' => $request->info,
-            'user_id' => auth()->user()->id
-        ]);
-
-        return redirect()->route('job.index')->with('created', 'Successfully Created');
+        return $postService->createPost($request);
     }
 
     /**
@@ -98,19 +89,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $job)
+    public function update(UpdatePostRequest $request, Post $job, PostService $postService)
     {
-        $job->update([
-            'name' => $request->name,
-            'salary' => $request->salary,
-            'category_id' => $request->category_id,
-            'requirements' => $request->requirements,
-            'job_desc' => $request->job_desc,
-            'info' => $request->info,
-            'user_id' => auth()->user()->id
-        ]);
-
-        return redirect()->route('job.index')->with('updated', 'Successfully Updated');
+        return $postService->updatePost($request, $job);
     }
 
     /**
