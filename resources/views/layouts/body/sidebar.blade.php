@@ -27,6 +27,17 @@
                 </ul>
             </li>
 
+            <li class="dropdown ">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-portrait"></i>
+                    <span>Job Managment</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('job.index') }}">Lists</x-menu-item>
+                    <x-menu-item link="{{ route('job.create') }}">Create</x-menu-item>
+                </ul>
+            </li>
+
             {{-- <li
                 class="dropdown {{ Request::is('enduser') ? 'active' : '' }}  {{ Request::is('enduser/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
