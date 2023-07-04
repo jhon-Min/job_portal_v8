@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +32,11 @@ Route::resource('category', CategoryController::class)->except('show');
 // Job
 Route::get('job/data_query', [PostController::class, 'queryTable'])->name('job.queryTable');
 Route::resource('job', PostController::class);
+
+// Users
+Route::get('user/data_query', [UserController::class, 'queryTable'])->name('user.queryTable');
+Route::resource('user', UserController::class);
+
+// Tags
+Route::get('tag/data_query', [TagController::class, 'queryTable'])->name('tag.queryTable');
+Route::resource('tag', TagController::class)->except('show');

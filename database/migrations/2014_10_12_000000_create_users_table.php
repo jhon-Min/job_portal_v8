@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('gender')->nullable();
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->boolean('is_ban')->default(0);
             $table->string('profile')->nullable();
             $table->enum('role', [1, 2])->default(2); // 1 is Admin and 2 is user

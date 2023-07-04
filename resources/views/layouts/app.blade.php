@@ -79,6 +79,10 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
 
+    <!-- Mark Js -->
+    <script type="text/javascript" src="{{ asset('js/mark.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatableMark.js') }}"></script>
+
     <!-- Page Specific JS File -->
     @yield('specific-js')
 
