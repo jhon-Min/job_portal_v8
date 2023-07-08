@@ -52,6 +52,8 @@ class PostService
             'user_id' => auth()->user()->id
         ]);
 
+        $job->tags()->sync($request->tags);
+
         return redirect()->route('job.index')->with('updated', 'Successfully Updated');
     }
 }
