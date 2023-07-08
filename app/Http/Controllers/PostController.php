@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Services\PostService;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Services\PostService;
 use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
@@ -35,7 +36,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name', 'asc')->get();
-        return view('job.create', compact('categories'));
+        $tags = Tag::select('id', 'name')->orderBy('name', 'asc')->get();
+        return view('job.create', compact('categories', 'tags'));
     }
 
     /**
@@ -57,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
@@ -69,7 +71,8 @@ class PostController extends Controller
     public function edit(Post $job)
     {
         $categories = Category::orderBy('name', 'asc')->get();
-        return view('job.edit', ['post' => $job, 'categories' => $categories]);
+        $tags = Tag::select('id', 'name')->orderBy('name', 'asc')->get();
+        return view('job.edit', ['post' => $job, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**

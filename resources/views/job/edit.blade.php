@@ -64,6 +64,20 @@
                             <textarea name="info" class="form-control" cols="30" rows="10">{{ old('info', $post->info) }}</textarea>
                         </div>
 
+                        <div class="mb-3">
+                            <label>Tags</label>
+                            <select class="form-select" id="select-custom-multiple" name="tags[]"
+                                data-placeholder="Choose anything" multiple>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}" @if (in_array(
+                                            $tag->id,
+                                            collect($post->tags)->pluck('id')->toArray())) selected @endif>
+                                        {{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
 
                         <button class="btn btn-primary px-3 mt-4">Save</button>
                     </form>
@@ -75,4 +89,9 @@
 
 @section('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\UpdatePostRequest', '#updateForm') !!}
+    <script>
+        $(document).ready(function() {
+            $('#select-custom-multiple').select2();
+        });
+    </script>
 @endsection

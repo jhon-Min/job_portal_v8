@@ -62,6 +62,15 @@
                             <textarea name="info" class="form-control" cols="30" rows="10">{{ old('info') }}</textarea>
                         </div>
 
+                        <div class="mb-3">
+                            <label>Tags</label>
+                            <select class="form-select" id="select-custom-multiple" name="tags[]"
+                                data-placeholder="Choose anything" multiple>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <button class="btn btn-primary px-3 mt-4">Save</button>
                     </form>
@@ -73,4 +82,9 @@
 
 @section('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\StorePostRequest', '#createForm') !!}
+    <script>
+        $(document).ready(function() {
+            $('#select-custom-multiple').select2();
+        });
+    </script>
 @endsection

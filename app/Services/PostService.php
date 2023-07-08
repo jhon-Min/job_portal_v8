@@ -10,7 +10,7 @@ class PostService
 {
     public function createPost($request)
     {
-        Post::create([
+        $post = Post::create([
             'name' => $request->name,
             'salary' => $request->salary,
             'category_id' => $request->category_id,
@@ -19,6 +19,8 @@ class PostService
             'info' => $request->info,
             'user_id' => auth()->user()->id
         ]);
+
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('job.index')->with('created', 'Successfully Created');
     }
